@@ -51,6 +51,7 @@ export class Note {
     /** The amount of notes the tuplet of this note (if there is one) replaces. */
     private normalNotes: number;
     private isRestFlag: boolean;
+    public IsWholeMeasureRest: boolean;
     /**
      * The untransposed (!!!) source data.
      */
@@ -260,6 +261,11 @@ export class Note {
      */
     public isWholeRest(): boolean {
         return this.isRest() && this.Length.RealValue === this.sourceMeasure.ActiveTimeSignature.RealValue;
+    }
+
+    /** Whether the note fills the whole measure. */
+    public isWholeMeasureNote(): boolean {
+        return this.Length.RealValue === this.sourceMeasure.ActiveTimeSignature.RealValue;
     }
 
     public ToString(): string {
